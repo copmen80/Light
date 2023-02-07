@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/iSend"
+        android:icon="@drawable/send"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom"
+        android:title="Send">
+    </item>
+    <item
+        android:id="@+id/iMenu"
+        android:icon="@drawable/menu"
+        app:showAsAction="ifRoom|withText"
+        android:iconTint="@color/white"
+        android:title="Menu">
+    </item>
+</menu>
