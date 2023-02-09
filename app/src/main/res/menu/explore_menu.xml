@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/iSend"
-        android:icon="@drawable/send"
+        android:icon="@drawable/ic_send"
         android:iconTint="@color/white"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:title="Send">
     </item>
     <item
         android:id="@+id/iMenu"
-        android:icon="@drawable/menu"
+        android:icon="@drawable/ic_menu"
         app:showAsAction="ifRoom|withText"
-        android:iconTint="@color/white"
         android:title="Menu">
     </item>
 </menu>

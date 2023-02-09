@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.electro.light.explore.ui.MenuFragment"
+        android:name="com.electro.light.menu.ui.MenuFragment"
         android:label="MenuFragment" />
 </navigation>

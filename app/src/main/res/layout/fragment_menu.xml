@@ -18,7 +18,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <TextView
@@ -31,7 +30,8 @@
                 android:maxLines="1"
                 android:text="Головне меню"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -44,40 +44,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarContainer">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/rounded_item" />
+            app:cardCornerRadius="32dp">
 
-        <ImageView
+            <ImageView
+                android:id="@+id/ivAbout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/info" />
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/img"
-            android:layout_marginBottom="8dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="32dp">
+
+            <ImageView
+                android:id="@+id/ivDonat"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/donat" />
+        </androidx.cardview.widget.CardView>
+
 
         <Button
+            android:id="@+id/bTelegram"
+            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/ic_telegram"
             android:gravity="center|start"
-            android:text="Написати нам" />
+            android:text="Telegram канал" />
 
         <Button
+            android:id="@+id/bQuestion"
+            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/ic_question"
             android:gravity="center|start"
-            android:text="Написати нам" />
+            android:text="Часті питання" />
 
         <Button
+            android:id="@+id/bEmail"
+            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/rounded_button"
+            android:layout_height="70dp"
+            android:drawableLeft="@drawable/ic_email"
             android:gravity="center|start"
             android:text="Написати нам" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
