@@ -1,5 +1,7 @@
 package com.electro.light.menu.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.electro.light.R
-import com.electro.light.databinding.FragmentExploreBinding
 import com.electro.light.databinding.FragmentMenuBinding
+
 
 class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
@@ -39,19 +41,27 @@ class MenuFragment : Fragment() {
 
     private fun initClickListeners() {
         binding.ivDonat.setOnClickListener {
-            Toast.makeText(context, "Thanks for donat", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "We don't need your donat", Toast.LENGTH_LONG).show()
         }
         binding.ivAbout.setOnClickListener {
             Toast.makeText(context, "It my Application", Toast.LENGTH_LONG).show()
         }
         binding.bTelegram.setOnClickListener {
-            Toast.makeText(context, "Telegram", Toast.LENGTH_LONG).show()
+            val telegramIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/DEVVitcher"))
+            startActivity(telegramIntent)
         }
         binding.bQuestion.setOnClickListener {
-            Toast.makeText(context, "Questions", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "We don't have answers", Toast.LENGTH_LONG).show()
         }
         binding.bEmail.setOnClickListener {
-            Toast.makeText(context, "Email", Toast.LENGTH_LONG).show()
+            val emailIntent = Intent(
+                Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", "vladislavboiko.developer@gmail.com", null
+                )
+            )
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Body")
+            startActivity(Intent.createChooser(emailIntent, "Send email..."))
         }
     }
 }
