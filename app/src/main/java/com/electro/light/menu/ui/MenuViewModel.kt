@@ -1,4 +1,6 @@
 package com.electro.light.menu.ui
 
-class MenuViewModel {
+import androidx.lifecycle.ViewModel
+
+class MenuViewModel() : ViewModel() {
 }

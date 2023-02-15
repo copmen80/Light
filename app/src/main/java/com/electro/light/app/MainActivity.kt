@@ -1,7 +1,8 @@
-package com.electro.light
+package com.electro.light.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.electro.light.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
