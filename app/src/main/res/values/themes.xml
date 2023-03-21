@@ -18,8 +18,6 @@
         <!--  Toolbar Style -->
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
 
-        <!--  Button Style -->
-        <item name="buttonStyle">@style/Widget.App.Button</item>
     </style>
 
     <!--  Toolbar Style -->

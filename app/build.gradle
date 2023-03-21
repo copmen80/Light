@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'kotlin-android'
     id 'kotlin-parcelize'
@@ -57,22 +57,17 @@ dependencies {
     implementation 'com.github.markushi:circlebutton:1.1'
 
     //Room
-    implementation("androidx.room:room-runtime:2.3.0")
-    annotationProcessor("androidx.room:room-compiler:2.3.0")
-    kapt 'androidx.room:room-compiler:2.2.2'
-    implementation 'androidx.room:room-rxjava2:2.2.2'
-    implementation 'androidx.room:room-rxjava3:2.4.2'
-    implementation 'androidx.room:room-guava:2.2.2'
-    testImplementation 'androidx.room:room-testing:2.2.2'
-    implementation 'androidx.room:room-paging:2.4.2'
-    implementation 'androidx.room:room-ktx:2.3.0'
+    implementation 'androidx.room:room-ktx:2.5.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
 
     //Koin
+    implementation "io.insert-koin:koin-core:3.3.3"
     implementation "io.insert-koin:koin-android:3.3.3"
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
 
     //Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
@@ -83,4 +78,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
 }

@@ -6,14 +6,59 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.electro.light.explore.ui.ExploreFragment"
-        android:label="ExploreFragment" >
+        android:name="com.electro.light.location.explore.ui.ExploreFragment"
+        android:label="ExploreFragment">
         <action
             android:id="@+id/action_exploreFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_create_location_flow"
+            app:destination="@id/create_location_flow" />
+        <action
+            android:id="@+id/action_exploreFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.electro.light.menu.ui.MenuFragment"
         android:label="MenuFragment" />
+
+    <navigation
+        android:id="@+id/create_location_flow"
+        app:startDestination="@id/chooseGroupFragment">
+        <fragment
+            android:id="@+id/chooseGroupFragment"
+            android:name="com.electro.light.location.createlocation.choosegroup.ui.GroupsFragment"
+            android:label="ChooseGroupFragment">
+            <action
+                android:id="@+id/action_chooseGroupFragment_to_fillNameAndIconFragment"
+                app:destination="@id/fillNameAndIconFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/fillNameAndIconFragment"
+            android:name="com.electro.light.location.createlocation.fillnameandicon.ui.FillNameAndIconFragment"
+            android:label="FillNameAndIconFragment">
+            <argument
+                android:name="group"
+                app:argType="string" />
+        </fragment>
+        <action
+            android:id="@+id/action_global_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:popUpTo="@+id/app_nav"
+            app:popUpToInclusive="true" />
+    </navigation>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.electro.light.location.detailed.ui.DetailedFragment"
+        android:label="DetailedFragment">
+        <argument
+            android:name="locationUiModel"
+            app:argType="com.electro.light.location.explore.ui.model.LocationUiModel" />
+        <action
+            android:id="@+id/action_detailedFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:popUpTo="@+id/app_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

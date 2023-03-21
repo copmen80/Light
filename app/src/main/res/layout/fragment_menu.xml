@@ -18,6 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <TextView
@@ -74,31 +75,44 @@
         </androidx.cardview.widget.CardView>
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bTelegram"
-            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:drawableLeft="@drawable/ic_telegram"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_dark_gray_item"
+            android:drawableStart="@drawable/ic_telegram"
+            android:drawablePadding="8dp"
             android:gravity="center|start"
-            android:text="Telegram канал" />
+            android:padding="12dp"
+            android:text="Telegram канал"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bQuestion"
-            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:drawableLeft="@drawable/ic_question"
+            android:layout_height="60dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/rounded_dark_gray_item"
+            android:drawableStart="@drawable/ic_question"
+            android:drawablePadding="8dp"
             android:gravity="center|start"
-            android:text="Часті питання" />
+            android:padding="12dp"
+            android:text="Часті питання"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bEmail"
-            style="@style/Widget.App.Button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:drawableLeft="@drawable/ic_email"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_dark_gray_item"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="8dp"
             android:gravity="center|start"
-            android:text="Написати нам" />
+            android:padding="12dp"
+            android:text="Написати нам"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
