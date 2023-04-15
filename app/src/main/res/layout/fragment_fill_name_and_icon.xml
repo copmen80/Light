@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
     android:background="@color/black">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -29,7 +30,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Група 1"
+                tool:text="Група 1"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -42,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Дайте назву локації:"
+        android:text="@string/name_description"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarContainer" />
@@ -53,7 +54,7 @@
         android:layout_height="60dp"
         android:layout_margin="8dp"
         android:background="@drawable/rounded_dark_gray_item"
-        android:hint="Мій Дім"
+        android:hint="@string/hint_for_edit_text"
         android:padding="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/light_gray"
@@ -65,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Виберіть іконку:"
+        android:text="@string/choose_icon"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etNameLocation" />
@@ -85,9 +86,8 @@
         android:layout_margin="8dp"
         android:background="@drawable/rounded_dark_gray_item"
         android:backgroundTint="@color/orange"
-        android:text="Зберегти"
+        android:text="@string/save"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvIcons" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

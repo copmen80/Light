@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.electro.light.R
 import com.electro.light.databinding.LocationItemBinding
-import com.electro.light.location.common.data.Location
 import com.electro.light.location.explore.ui.model.LocationUiModel
 import com.electro.light.utils.DefaultDiffCallback
 
@@ -21,20 +20,22 @@ class LocationAdapter(
     DefaultDiffCallback { oldItem, newItem -> oldItem == newItem }
 ) {
 
-    inner class LocationViewHolder(item: View, private val callback: (LocationEvent) -> Unit) :
+    // TODO read about inner class
+    class LocationViewHolder(item: View, private val callback: (LocationEvent) -> Unit) :
         ViewHolder(item) {
         private val binding = LocationItemBinding.bind(item)
 
         fun bind(locationUiModel: LocationUiModel) = with(binding) {
             ivIcon.setImageResource(locationUiModel.icon)
             tvName.text = locationUiModel.name
+            tvRemainingTime.text = locationUiModel.remainingTime
 
             cvLocation.setOnClickListener {
-                callback.invoke(OpenDetailed(locationUiModel))
+                callback(OpenDetailed(locationUiModel))
             }
 
             cvLocation.setOnLongClickListener {
-                callback.invoke(DeleteLocation(locationUiModel.name))
+                callback(DeleteLocation(locationUiModel.name))
                 true
             }
         }

@@ -3,7 +3,6 @@ package com.electro.light.location.detailed.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.electro.light.R
 import com.electro.light.databinding.ScheduleItemBinding
@@ -27,7 +26,7 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>
     }
 
     fun updateList(day: DayUiModel) {
-        scheduleList = day.daySchedule
+        scheduleList = day.daySchedule as ArrayList<ScheduleUiModel>
         notifyDataSetChanged()
     }
 

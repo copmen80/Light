@@ -4,7 +4,7 @@ import androidx.room.*
 
 
 @Dao
-interface LocationDAO {
+interface LocationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addLocation(location: Location)

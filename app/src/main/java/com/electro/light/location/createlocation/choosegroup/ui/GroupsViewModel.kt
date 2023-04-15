@@ -6,8 +6,8 @@ import com.electro.light.location.createlocation.choosegroup.ui.model.GroupUiMod
 class GroupsViewModel : ViewModel() {
 
     fun getGroups() = arrayListOf(
-        GroupUiModel("1"),
-        GroupUiModel("2"),
-        GroupUiModel("3"),
+        GroupUiModel(1),
+        GroupUiModel(2),
+        GroupUiModel(3),
     )
 }

@@ -10,15 +10,15 @@ import com.electro.light.databinding.ChooseGroupItemBinding
 
 class GroupAdapter(
     private val groupsList: ArrayList<GroupUiModel>,
-    private val callback: (String) -> Unit
+    private val callback: (Int) -> Unit
 ) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
 
-    inner class GroupViewHolder(item: View, private val callback: (String) -> Unit) :
+    inner class GroupViewHolder(item: View, private val callback: (Int) -> Unit) :
         RecyclerView.ViewHolder(item) {
         private val binding = ChooseGroupItemBinding.bind(item)
 
         fun bind(groupUiModel: GroupUiModel) = with(binding) {
-            bGroup.text = groupUiModel.numberOfGroup
+            bGroup.text = groupUiModel.numberOfGroup.toString()
 
             bGroup.setOnClickListener {
                 callback.invoke(groupUiModel.numberOfGroup)

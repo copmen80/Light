@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.App.ToolbarTitle" parent="TextAppearance.MaterialComponents.Headline6" />
+
+    <style name="TextAppearance.App.Title" parent="TextAppearance.MaterialComponents.Headline6" />
+
+    <style name="TextAppearance.App.SubTitle" parent="TextAppearance.MaterialComponents.Subtitle1" />
+
+    <style name="TextAppearance.App.SubTitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
+
+    <style name="TextAppearance.App.Text" parent="TextAppearance.MaterialComponents.Body1" />
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.App.TextError" parent="TextAppearance.App.Text">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

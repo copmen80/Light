@@ -9,9 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.electro.light.R
 import com.electro.light.location.createlocation.choosegroup.ui.adapter.GroupAdapter
-import com.electro.light.location.createlocation.choosegroup.ui.model.GroupUiModel
 import com.electro.light.databinding.FragmentChooseGroupBinding
-import com.electro.light.location.createlocation.fillnameandicon.ui.FillNameAndIconViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GroupsFragment : Fragment() {
@@ -32,7 +30,7 @@ class GroupsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentChooseGroupBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,7 +44,7 @@ class GroupsFragment : Fragment() {
     private fun initToolbar() {
         binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.toolbar.setNavigationOnClickListener {
-            activity?.onBackPressed()
+            activity?.onBackPressedDispatcher
         }
     }
 
@@ -55,7 +53,7 @@ class GroupsFragment : Fragment() {
         binding.rvGroups.adapter = groupAdapter
     }
 
-    private fun navigateFillNameAndIcon(group: String) {
+    private fun navigateFillNameAndIcon(group: Int) {
         val action =
             GroupsFragmentDirections.actionChooseGroupFragmentToFillNameAndIconFragment(
                 group

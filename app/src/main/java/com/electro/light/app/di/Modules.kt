@@ -2,13 +2,13 @@ package com.electro.light.app.di
 
 import android.app.Application
 import androidx.room.Room
-import com.electro.light.app.database.LightDataBase
+import com.electro.light.location.common.data.database.LightDataBase
 import com.electro.light.location.common.data.LocationRepository
-import com.electro.light.location.common.data.LocationDAO
+import com.electro.light.location.common.data.LocationDao
 import com.electro.light.location.createlocation.choosegroup.ui.GroupsViewModel
 import com.electro.light.location.createlocation.fillnameandicon.ui.FillNameAndIconViewModel
 import com.electro.light.location.detailed.ui.DetailedViewModel
-import com.electro.light.location.explore.data.remote.LightApi
+import com.electro.light.location.common.data.remote.LightApi
 import com.electro.light.location.explore.ui.ExploreViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,7 +29,7 @@ val viewModelModule = module {
 val networkModule = module {
 
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl("https://www.google.com").client(okHttpClient)
+        return Retrofit.Builder().baseUrl("https://53662723-94e2-4979-9fd1-90e7825e197e.mock.pstmn.io").client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
@@ -54,7 +54,7 @@ val databaseModule = module {
         ).build()
     }
 
-    fun provideLocationDAO(lightDataBase: LightDataBase): LocationDAO {
+    fun provideLocationDAO(lightDataBase: LightDataBase): LocationDao {
         return requireNotNull(lightDataBase.getLocationDao())
     }
 
@@ -69,7 +69,7 @@ val repositoryModule = module {
 
     fun provideLocationRepository(
         lightApi: LightApi,
-        locationDAO: LocationDAO
+        locationDAO: LocationDao
     ): LocationRepository {
         return LocationRepository(lightApi, locationDAO)
     }

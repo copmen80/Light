@@ -20,10 +20,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ExploreFragment : Fragment() {
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
+    // TODO required not null
 
     private val viewModel by viewModel<ExploreViewModel>()
 
-    private var locationsAdapter = LocationAdapter { locationEvent ->
+    private val locationsAdapter = LocationAdapter { locationEvent ->
         when (locationEvent) {
             is DeleteLocation -> viewModel.deleteLocation(locationEvent.name)
             is OpenDetailed -> navigateDetailedFragment(locationEvent.location)
@@ -34,7 +35,7 @@ class ExploreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentExploreBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,22 +47,10 @@ class ExploreFragment : Fragment() {
         handleViewModel()
     }
 
-
-    private fun handleEvents() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.eventsFlow.collect { event ->
-                when (event) {
-                    is ExploreEvent.UserData -> TODO()
-                }
-            }
-        }
-    }
-
     private fun handleViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        lifecycleScope.launchWhenStarted {
             viewModel.content.collectLatest { list ->
                 stateListUi(list)
-
                 locationsAdapter.submitList(list)
             }
         }
@@ -92,7 +81,7 @@ class ExploreFragment : Fragment() {
                     return@setOnMenuItemClickListener true
                 }
                 R.id.iSend -> {
-                    Toast.makeText(context, "Send", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Something send", Toast.LENGTH_LONG).show()
                     return@setOnMenuItemClickListener true
                 }
             }
@@ -112,6 +101,7 @@ class ExploreFragment : Fragment() {
         }
     }
 
+    // TODO add state
     private fun stateListUi(list: List<LocationUiModel>) {
         if (list.isEmpty()) {
             binding.llEmptyList.visibility = View.VISIBLE

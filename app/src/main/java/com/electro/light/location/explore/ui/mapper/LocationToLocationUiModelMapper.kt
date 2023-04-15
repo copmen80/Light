@@ -8,7 +8,9 @@ class LocationToLocationUiModelMapper {
         return LocationUiModel(
             name = location.name,
             icon = location.icon,
-            group = location.group
+            group = location.group,
+            schedule = null,
+            remainingTime = null
         )
     }
 }

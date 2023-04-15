@@ -10,13 +10,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.electro.light.CreateLocationFlowDirections
 import com.electro.light.R
-import com.electro.light.location.createlocation.fillnameandicon.ui.adapter.IconAdapter
 import com.electro.light.databinding.FragmentFillNameAndIconBinding
 import com.electro.light.location.common.data.Location
+import com.electro.light.location.createlocation.fillnameandicon.ui.adapter.IconAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FillNameAndIconFragment : Fragment() {
-    private val group: String by lazy { requireNotNull(arguments?.getString(GROUP_KEY)) }
+    private val group: Int by lazy { requireNotNull(arguments?.getInt(GROUP_KEY)) }
     private var icon: Int = R.drawable.ic_location
 
     private var _binding: FragmentFillNameAndIconBinding? = null
@@ -36,7 +36,7 @@ class FillNameAndIconFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFillNameAndIconBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,7 +52,7 @@ class FillNameAndIconFragment : Fragment() {
         binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.toolbarTitle.text = "${resources.getText(R.string.group)} $group"
         binding.toolbar.setNavigationOnClickListener {
-            activity?.onBackPressed()
+            activity?.onBackPressedDispatcher
         }
     }
 
@@ -60,15 +60,26 @@ class FillNameAndIconFragment : Fragment() {
         binding.rvIcons.layoutManager = GridLayoutManager(context, 5)
         binding.rvIcons.adapter = adapter
         binding.bSave.setOnClickListener {
-            viewModel.addLocation(
-                Location(
-                    name = binding.etNameLocation.text.toString(),
-                    icon = icon,
-                    group = group
+            if (checkNameField()) {
+                viewModel.addLocation(
+                    Location(
+                        name = binding.etNameLocation.text.toString(),
+                        icon = icon,
+                        group = group
+                    )
                 )
-            )
-            navigateExploreFragment()
+                navigateExploreFragment()
+            } else {
+                return@setOnClickListener
+            }
         }
+    }
+    private fun checkNameField(): Boolean {
+        if (binding.etNameLocation.length() == 0) {
+            binding.etNameLocation.error = "This field must not be empty"
+            return false
+        }
+        return true
     }
 
     private fun navigateExploreFragment() {

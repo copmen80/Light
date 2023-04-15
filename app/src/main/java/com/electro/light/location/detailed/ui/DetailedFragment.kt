@@ -2,7 +2,6 @@ package com.electro.light.location.detailed.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.electro.light.databinding.FragmentDetailedBinding
-import com.electro.light.location.createlocation.fillnameandicon.ui.FillNameAndIconFragment
 import com.electro.light.location.detailed.ui.adapter.DayAdapter
 import com.electro.light.location.detailed.ui.adapter.ScheduleAdapter
-import com.electro.light.location.explore.ui.ExploreFragmentDirections
-import com.electro.light.location.explore.ui.model.LocationUiModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailedFragment : Fragment() {
@@ -28,7 +24,7 @@ class DetailedFragment : Fragment() {
     private val viewModel by viewModel<DetailedViewModel>()
 
     private val dayAdapter = DayAdapter {
-        viewModel.setDay(it)
+        viewModel.setActiveDay(it)
         viewModel.getScheduleForSelectedDay(it)
     }
 
@@ -38,7 +34,7 @@ class DetailedFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailedBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,7 +43,7 @@ class DetailedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         handleEvents()
-        viewModel.getScheduleForWeek()
+        viewModel.getScheduleForWeek(args.locationUiModel.group)
     }
 
     @SuppressLint("SetTextI18n")
@@ -75,8 +71,8 @@ class DetailedFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.eventsFlow.collect { event ->
                 when (event) {
-                    is DetailedEvent.ScheduleWeekData -> dayAdapter.updateList(event.list)
-                    is DetailedEvent.ScheduleWeek -> scheduleAdapter.updateList(event.scheduleWeek)
+                    is DetailedEvent.ScheduleWeek -> dayAdapter.updateList(event.list)
+                    is DetailedEvent.ScheduleDay -> scheduleAdapter.updateList(event.scheduleWeek)
                 }
             }
         }
