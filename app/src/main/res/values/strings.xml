@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Light</string>
+    <string name="group">Група</string>
+    <string name="until_time">До увімкнення світла:</string>
+    <string name="name_description">Дайте назву локації:</string>
+    <string name="hint_for_edit_text">Мій Дім</string>
+    <string name="choose_icon">Виберіть іконку:</string>
+    <string name="save">Зберегти</string>
+
 </resources>

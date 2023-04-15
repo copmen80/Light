@@ -17,6 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:background="@color/black"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -42,10 +43,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/llEmptyList"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:layout_margin="16dp"
-        android:background="@drawable/rounded_item"
+        android:background="@drawable/rounded_explore_item"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +58,6 @@
             android:layout_width="104dp"
             android:layout_height="104dp"
             android:src="@drawable/ic_plus"
-            android:tint="@color/white"
             app:cb_color="@color/gray"
             app:cb_pressedRingWidth="8dp" />
 
@@ -66,5 +67,27 @@
             android:text="Додайте першу локацію"
             android:textColor="@color/light_gray" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLocations"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarContainer" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_plus"
+        android:visibility="gone"
+        app:backgroundTint="@color/dark_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
