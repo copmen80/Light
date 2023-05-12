@@ -1,13 +1,9 @@
 package com.electro.light.location.createlocation.choosegroup.ui
 
 import androidx.lifecycle.ViewModel
-import com.electro.light.location.createlocation.choosegroup.ui.model.GroupUiModel
+import com.electro.light.location.createlocation.choosegroup.domain.GetGroupsUseCase
 
-class GroupsViewModel : ViewModel() {
+class GroupsViewModel(private val getGroupsUseCase: GetGroupsUseCase) : ViewModel() {
 
-    fun getGroups() = arrayListOf(
-        GroupUiModel(1),
-        GroupUiModel(2),
-        GroupUiModel(3),
-    )
+    fun getGroups() = getGroupsUseCase.invoke()
 }

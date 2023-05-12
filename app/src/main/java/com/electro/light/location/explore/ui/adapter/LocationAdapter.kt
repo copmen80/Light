@@ -30,6 +30,18 @@ class LocationAdapter(
             tvName.text = locationUiModel.name
             tvRemainingTime.text = locationUiModel.remainingTime
 
+            when (locationUiModel.typeShutdown) {
+                0 -> {
+                    tvDescription.text = "До вимкнення світла:"
+                }
+                1 -> {
+                    tvDescription.text = "До увімкнення світла:"
+                }
+                2 -> {
+                    tvDescription.text = "До вимкнення світла:"
+                }
+            }
+
             cvLocation.setOnClickListener {
                 callback(OpenDetailed(locationUiModel))
             }

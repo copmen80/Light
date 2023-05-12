@@ -10,5 +10,6 @@ data class LocationUiModel(
     val icon: Int,
     val group: Int,
     var remainingTime: String?,
+    var typeShutdown: Int?,
     var schedule: List<DayUiModel>?,
 ) : Parcelable

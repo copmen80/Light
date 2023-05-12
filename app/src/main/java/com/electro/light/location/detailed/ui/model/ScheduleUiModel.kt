@@ -8,4 +8,5 @@ data class ScheduleUiModel(
     val icon: Int?,
     val periodOfTime: String,
     val remainingTime: String,
+    val typeShutdown: Int
 ) : Parcelable

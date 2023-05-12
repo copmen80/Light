@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
     android:background="@drawable/schedule_item_unpressed"
     android:orientation="horizontal"
     android:padding="12dp">
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="6"
         android:gravity="center"
-        android:text="09:00 - 13:00"
+        tool:text="09:00 - 13:00"
         android:textColor="@color/light_gray"
         android:textSize="18sp" />
 
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
-        android:text="4г"
+        tool:text="4г"
         android:textColor="@color/light_gray"
         android:textSize="18sp" />
 </LinearLayout>
