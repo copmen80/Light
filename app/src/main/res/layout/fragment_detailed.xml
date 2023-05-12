@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:id="@+id/llLocation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Tt"
+                tool:text="Tt"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -84,7 +85,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/oval_item"
                 android:gravity="center"
-                android:text="Група 1"
+                tool:text="Група 1"
                 android:textAllCaps="false"
                 android:textColor="@color/light_gray"
                 android:textSize="16sp"
@@ -139,7 +140,7 @@
                     android:layout_margin="8dp"
                     android:drawableStart="@drawable/ic_warning"
                     android:drawablePadding="8dp"
-                    android:text="Відключення світла"
+                    android:text="@string/shutdown_light"
                     android:textColor="@color/light_gray"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -154,10 +155,10 @@
                 android:drawablePadding="8dp"
                 android:gravity="start|center"
                 android:padding="8dp"
-                android:text="Сповіщення за графіком"
+                android:text="@string/notification"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llSchedule" />
 
@@ -171,10 +172,10 @@
                 android:drawablePadding="8dp"
                 android:gravity="start|center"
                 android:padding="8dp"
-                android:text="Видалити локацію"
+                android:text="@string/delete_location"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/bNotifications" />
 

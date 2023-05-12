@@ -9,6 +9,7 @@ class ShutdownToScheduleUiModelMapper {
             icon = null,
             periodOfTime = shutdown.range,
             remainingTime = shutdown.quantity,
+            typeShutdown = shutdown.shutdownType
         )
     }
 }

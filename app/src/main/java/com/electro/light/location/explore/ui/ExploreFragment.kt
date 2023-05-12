@@ -1,8 +1,15 @@
 package com.electro.light.location.explore.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,6 +20,7 @@ import com.electro.light.location.explore.ui.adapter.DeleteLocation
 import com.electro.light.location.explore.ui.adapter.LocationAdapter
 import com.electro.light.location.explore.ui.adapter.OpenDetailed
 import com.electro.light.location.explore.ui.model.LocationUiModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +29,19 @@ class ExploreFragment : Fragment() {
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
     // TODO required not null
+
+    private var permissionAccess = false
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Log.d("Permission", "Granted")
+            } else {
+                Log.d("Permission", "Denied")
+            }
+        }
 
     private val viewModel by viewModel<ExploreViewModel>()
 
@@ -44,7 +65,41 @@ class ExploreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initToolbar()
         initUi()
+        requestPermissionNotification()
         handleViewModel()
+    }
+
+    private fun requestPermissionNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when {
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // Permission is granted
+                    permissionAccess = true
+                }
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) -> {
+                    requestPermissionLauncher.launch(
+                        Manifest.permission.POST_NOTIFICATIONS
+                    )
+                }
+                else -> {
+                    Snackbar.make(
+                        binding.ccLayout,
+                        "allow permission please", Snackbar.LENGTH_SHORT
+                    )
+                        .show()
+
+                    requestPermissionLauncher.launch(
+                        Manifest.permission.POST_NOTIFICATIONS
+                    )
+                }
+            }
+        }
     }
 
     private fun handleViewModel() {

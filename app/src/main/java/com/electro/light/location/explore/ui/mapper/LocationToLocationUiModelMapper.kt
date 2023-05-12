@@ -10,7 +10,8 @@ class LocationToLocationUiModelMapper {
             icon = location.icon,
             group = location.group,
             schedule = null,
-            remainingTime = null
+            remainingTime = null,
+            typeShutdown = null
         )
     }
 }

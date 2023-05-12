@@ -9,6 +9,10 @@ import com.electro.light.location.createlocation.choosegroup.ui.GroupsViewModel
 import com.electro.light.location.createlocation.fillnameandicon.ui.FillNameAndIconViewModel
 import com.electro.light.location.detailed.ui.DetailedViewModel
 import com.electro.light.location.common.data.remote.LightApi
+import com.electro.light.location.createlocation.choosegroup.domain.GetGroupsUseCase
+import com.electro.light.location.explore.domain.DeleteLocationUseCase
+import com.electro.light.location.explore.domain.GetAllLocationUseCase
+import com.electro.light.location.explore.domain.GetScheduleForWeekUseCase
 import com.electro.light.location.explore.ui.ExploreViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,16 +24,46 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
-    viewModel { ExploreViewModel(get()) }
+    viewModel { ExploreViewModel(application = androidApplication(), get(), get(), get()) }
     viewModel { FillNameAndIconViewModel(get()) }
-    viewModel { GroupsViewModel() }
+    viewModel { GroupsViewModel(get()) }
     viewModel { DetailedViewModel(get()) }
 }
 
-val networkModule = module {
+val useCases = module {
+    fun provideGetGroupUseCase(): GetGroupsUseCase {
+        return GetGroupsUseCase()
+    }
 
+    fun provideDeleteLocationUseCase(
+        locationRepository: LocationRepository
+    ): DeleteLocationUseCase {
+        return DeleteLocationUseCase(locationRepository)
+    }
+
+    fun provideGetAllLocationUseCase(
+        locationRepository: LocationRepository
+    ): GetAllLocationUseCase {
+        return GetAllLocationUseCase(locationRepository)
+    }
+
+    fun provideGetScheduleForWeekUseCase(
+        locationRepository: LocationRepository
+    ): GetScheduleForWeekUseCase {
+        return GetScheduleForWeekUseCase(locationRepository)
+    }
+
+    factory { provideGetGroupUseCase() }
+    factory { provideDeleteLocationUseCase(get()) }
+    factory { provideGetAllLocationUseCase(get()) }
+    factory { provideGetScheduleForWeekUseCase(get()) }
+}
+
+val networkModule = module {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl("https://53662723-94e2-4979-9fd1-90e7825e197e.mock.pstmn.io").client(okHttpClient)
+        return Retrofit.Builder()
+            .baseUrl("https://53662723-94e2-4979-9fd1-90e7825e197e.mock.pstmn.io")
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
@@ -46,7 +80,6 @@ val networkModule = module {
 }
 
 val databaseModule = module {
-
     fun provideDataBase(application: Application): LightDataBase {
         return Room.databaseBuilder(
             application,

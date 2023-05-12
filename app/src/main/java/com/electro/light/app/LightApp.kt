@@ -14,7 +14,7 @@ class LightApp : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@LightApp)
-            modules(viewModelModule, networkModule, databaseModule, repositoryModule)
+            modules(viewModelModule, networkModule, databaseModule, repositoryModule, useCases)
         }
     }
 }
